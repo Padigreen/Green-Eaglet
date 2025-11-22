@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OJ MARIA - KILISHI DELIGHT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="OJ MARIA presents KILISHI DELIGHT - Premium, mouthwatering kilishi delivered fresh! Order now.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --deep-red: #B53431;       /* from label background */
+      --teal: #008C81;           /* from pack lid border */
+      --teal-dark: #00665c;      /* slightly darker for buttons */
+      --teal-light: #22bfa5;     /* highlight/hover */
+      --white: #fff;
+      --offwhite: #fffafa;
+      --shadow: rgba(0,140,129,0.07);
+    }
+    * { box-sizing: border-box; }
+    body, html {
+      margin: 0; padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--offwhite);
+      color: var(--teal-dark);
+    }
+    header {
+      background: var(--teal);
+      color: var(--white);
+      padding: 1rem 0;
+      box-shadow: 0 5px 8px -6px var(--shadow);
+      position: sticky; top: 0; z-index: 10;
+    }
+    nav { display: flex; justify-content: center; }
+    nav a {
+      color: var(--white); text-decoration: none;
+      margin: 0 1.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      position: relative;
+      transition: color 0.2s;
+    }
+    nav a:after {
+      content: ""; display: block;
+      height: 2px; width: 0; background: var(--deep-red);
+      transition: width 0.2s;
+      margin: 0 auto;
+    }
+    nav a:hover { color: var(--deep-red);}
+    nav a:hover:after { width: 60%; }
+    .container {
+      width: 93vw;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1rem 0;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 65vh;
+      padding: 2.2rem 0 1.4rem 0;
+      background: linear-gradient(120deg, #fff 44%, #e9f8f6 100%);
+      position: relative;
+    }
+    .hero-img-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.1rem;
+      justify-content: center;
+      margin-bottom: 1.1rem;
+    }
+    .hero-img-group img {
+      width: 240px;
+      max-width: 90vw;
+      border: 5px solid var(--teal);
+      border-radius: 1rem;
+      box-shadow: 0 2px 18px -7px var(--teal);
+      background: var(--white);
+      object-fit: cover;
+      transition: transform 0.18s;
+    }
+    .hero-img-group img:hover {
+      transform: scale(1.04) rotate(-1.5deg);
+    }
+    .hero h1 {
+      font-size: 2.5rem; margin: 0.2em 0 0.3em;
+      letter-spacing: 2px;
+      color: var(--deep-red);
+      text-shadow: 0 1px 0 #fffc;
+    }
+    .hero h2 {
+      font-size: 1.18rem; font-weight: 400;
+      color: var(--teal-dark); margin-bottom: 1.2em;
+      font-style: italic;
+      text-shadow: 0 1px 0 #fff7;
+    }
+    .cta-btn {
+      background: var(--deep-red); color: var(--white);
+      padding: 1em 2em; border: none; border-radius: 2em;
+      font-size: 1.08em; font-weight: 700; letter-spacing: 1px;
+      box-shadow: 0 3px 18px -11px var(--deep-red);
+      transition: background 0.18s, color 0.2s, transform 0.12s;
+      cursor: pointer;
+      margin-bottom: 0.5em;
+      outline: none;
+    }
+    .cta-btn:hover, .cta-btn:focus {
+      background: var(--teal);
+      color: var(--white);
+      transform: scale(1.04);
+    }
+    .section-title {
+      color: var(--teal);
+      font-size: 2rem;
+      margin: 0.9em 0 0.2em;
+    }
+    .about, .product, .order, .testimonials, .contact {
+      margin: 2.3em 0;
+      padding: 1.3em 1.1em;
+      border-radius: 12px;
+      background: #f4fffd;
+      box-shadow: 0 0 12px -7px var(--shadow);
+      border-left: 6px solid var(--teal);
+      animation: fadeIn 0.9s;
+    }
+    .about p, .product p, .order li, .contact p {
+      font-size: 1.04rem; color: #155d58;
+      line-height: 1.7;
+    }
+    .product-list {
+      display: flex; flex-wrap: wrap; gap: 1.2em 2em; justify-content: center;
+      list-style: none; margin: 1.2em 0 0 0; padding: 0;
+    }
+    .product-list li {
+      background: #008c811a; border: 1.5px solid #b53431aa;
+      border-radius: 9px; padding: 1.1em 1.2em;
+      min-width: 177px; text-align: left;
+      margin-bottom: 0.7em;
+      box-shadow: 0 2px 9px -6px #bf34310b;
+    }
+    .product-list strong { color: var(--deep-red); display:block; font-size: 1.08em;}
+    .order {
+      text-align: center;
+    }
+    .order .cta-btn {
+      margin-top: 1em;
+      min-width: 210px;
+    }
+    .testimonials {
+      background: #e2fff7ed;
+      text-align: center;
+      border-left: 6px solid var(--deep-red);
+    }
+    .testimonial-slide {
+      display: none; animation: fadeIn 0.7s;
+      font-style: italic;
+      color: var(--deep-red);
+      font-weight: 500;
+    }
+    .testimonial-slide.active {
+      display: block;
+    }
+    .testimonial-slide small {
+      display: block; margin-top: 0.5em; color: var(--teal-dark);
+    }
+    .testimonial-controls {
+      margin: 1em 0 0;
+      display: flex; justify-content: center; gap: 1.2em;
+    }
+    .testimonial-dot {
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--teal); border: none; margin: 0 3px;
+      outline: none; cursor: pointer;
+      transition: background 0.2s;
+      opacity: 0.55;
+      border: 2px solid var(--deep-red);
+    }
+    .testimonial-dot.active,
+    .testimonial-dot:hover {
+      background: var(--deep-red);
+      opacity: 1;
+    }
+    .contact {
+      text-align: center;
+      border-left: 6px solid var(--teal);
+      background: #fafffd;
+    }
+    .contact a, .contact a:visited {
+      color: var(--deep-red); text-decoration: underline; font-weight: 600;
+      transition: color 0.2s;
+      word-break: break-all;
+    }
+    .contact a:hover { color: var(--teal);}
+    footer {
+      background: var(--teal);
+      text-align: center;
+      padding: 1.3em 0 0.7em;
+      color: #fffdfa;
+      font-size: 0.97em;
+      margin-top: 2em;
+      letter-spacing: 0.5px;
+    }
+    @media (max-width: 700px) {
+      .hero-img-group { flex-direction: column; align-items: center;}
+      .hero-img-group img { width: 170px;}
+      .product-list { gap: 1em; }
+      .section-title { font-size: 1.45rem;}
+    }
+    @media (max-width: 480px) {
+      .container{width:99vw;padding:0;}
+      .about, .product, .order, .testimonials, .contact {
+        padding: 0.7em 0.4em;
+      }
+      header{padding:.7em 0;}
+      .hero h1{font-size: 1.4rem;}
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#product">Products</a>
+      <a href="#order">Order</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="home" class="container">
+    <section class="hero">
+      <!-- Photos attached by user, as hero images -->
+      <div class="hero-img-group">
+        <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-HkrsYuAvHBhDSK1wHzkL3kSb/user-PeKEnrKlcMyh0Z3EI7WZzse1/img-42e98ce7e7068b7d01cfcab88663d505.png?st=2024-06-24T08%3A28%3A32Z&amp;se=2024-06-24T10%3A28%3A32Z&amp;sp=r&amp;sv=2021-08-06&amp;sr=b&amp;rscd=inline&amp;rsct=image&amp;skoid=37c19a54-0cd0-4e93-be6f-158b79fc5890&amp;sktid=7e9d4ae7-dd20-4912-8dd9-ae6a1f531121&amp;skt=2024-06-24T08%3A28%3A32Z&amp;ske=2024-06-25T08%3A28%3A32Z&amp;sks=b&amp;skv=2021-08-06&amp;sig=VqkLNtvWgKzDXH/hwOUHu3Y4LVdOQkH5ojRFv1IOkOQ%3D" alt="Kilishi Delight Packs" />
+        <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-HkrsYuAvHBhDSK1wHzkL3kSb/user-PeKEnrKlcMyh0Z3EI7WZzse1/img-627e50be6bebe22b8cfac2b3775240cc.png?st=2024-06-24T08%3A30%3A16Z&amp;se=2024-06-24T10%3A30%3A16Z&amp;sp=r&amp;sv=2021-08-06&amp;sr=b&amp;rscd=inline&amp;rsct=image&amp;skoid=45d17ba7-c217-4c68-b8c2-38fb1157b19f&amp;sktid=9efb4950-92b5-4950-ba42-e0bffacedf95&amp;skt=2024-06-24T08%3A30%3A16Z&amp;ske=2024-06-25T08%3A30%3A16Z&amp;sks=b&amp;skv=2021-08-06&amp;sig=djxNNSKjch7egPVLJyLneg%2Bbm3v%2Bm449Wn2ET%2BN3vwY%3D" alt="Kilishi Delight Packs" />
+      </div>
+      <h1>OJ MARIA</h1>
+      <h2>KILISHI DELIGHT – Tasty. Real. Unmatched.</h2>
+      <button class="cta-btn" onclick="window.open('https://wa.me/2348109889695?text=Hi%20OJ%20MARIA!%20I%20want%20to%20order%20KILISHI%20DELIGHT','_blank')">Order Now on WhatsApp</button>
+    </section>
+    
+    <section id="about" class="about">
+      <h3 class="section-title">About OJ MARIA</h3>
+      <p>
+        Welcome to OJ MARIA, home of <strong>KILISHI DELIGHT</strong>! We're passionate about sharing our love for authentic, spicy, and irresistibly crispy kilishi. Prepared with care, handed down recipes, and the finest ingredients, our kilishi brings you a true taste of tradition, straight from our heart to your home.
+      </p>
+    </section>
+    
+    <section id="product" class="product">
+      <h3 class="section-title">Our Kilishi</h3>
+      <p>
+        <strong>Kilishi Delight</strong> comes in a <b>family pack of 125g</b> and a <b>small pack of 62g</b>! <br>
+        <br>
+        Kilishi is a thin, spicy, sun-dried beef snack rooted in Northern Nigerian heritage.<br>
+        Ours is <strong>crunchy, spicy, and bursting with flavor</strong> – perfect for snacking solo or sharing with friends.
+      </p>
+      <ul class="product-list">
+        <li>
+          <strong>KILISHI DELIGHT Classic</strong>
+          <br>Our signature crispy, spicy, traditional kilishi.<br>
+        </li>
+        <li>
+          <strong>Hot & Spicy</strong>
+          <br>Turn up the HEAT! For those who love spicy with zest.
+        </li>
+        <li>
+          <strong>Kids’ Mild Pack</strong>
+          <br>Less spice, same delicious delight!
+        </li>
+        <li>
+          <strong>Custom Orders</strong>
+          <br>Contact us for party packs, events, or special flavors.
+        </li>
+      </ul>
+    </section>
+
+    <section id="order" class="order">
+      <h3 class="section-title">Order/Enquiries</h3>
+      <p>
+        Ready to experience KILISHI DELIGHT? Call or chat us on WhatsApp for same-day confirmation!
+      </p>
+      <button class="cta-btn" onclick="window.open('https://wa.me/2348109889695?text=Hi%2C%20I%20want%20to%20order%20Kilishi%20Delight!','_blank')">
+        Order via WhatsApp
+      </button>
+      <p><small>Pickup & delivery available in Lagos (other locations on request)</small></p>
+    </section>
+    
+    <section id="testimonials" class="testimonials">
+      <h3 class="section-title">What Our Customers Say</h3>
+      <div class="testimonial-slide active">
+        "Absolutely delicious! It tastes just like home. My family can't get enough."
+        <small>- Chinedu O.</small>
+      </div>
+      <div class="testimonial-slide">
+        "The best kilishi I've had in Lagos. Fresh, crispy, and spicy. Highly recommend!"
+        <small>- Maryam B.</small>
+      </div>
+      <div class="testimonial-slide">
+        "Quick delivery and excellent customer service. I'll order again!"
+        <small>- Daniel F.</small>
+      </div>
+      <div class="testimonial-slide">
+        "I love that there’s a kids’ version – my children enjoy it so much!"
+        <small>- Ifeoma E.</small>
+      </div>
+      <div class="testimonial-controls">
+        <button class="testimonial-dot active" onclick="showTestimonial(0)"></button>
+        <button class="testimonial-dot" onclick="showTestimonial(1)"></button>
+        <button class="testimonial-dot" onclick="showTestimonial(2)"></button>
+        <button class="testimonial-dot" onclick="showTestimonial(3)"></button>
+      </div>
+    </section>
+    
+    <section id="contact" class="contact">
+      <h3 class="section-title">Contact & Socials</h3>
+      <p>
+        <strong>Phone/WhatsApp:</strong><br>
+        <a href="tel:+2348109889695">08109889695</a><br>
+        <a href="tel:+2348106558031">08106558031</a><br>
+        <strong>Email:</strong>
+        <a href="mailto:ojmariaventures@gmail.com">ojmariaventures@gmail.com</a><br>
+        <strong>Instagram:</strong> 
+        <a href="https://instagram.com/ojmaria_kilishi" target="_blank">@ojmaria_kilishi</a><br>
+        <strong>Facebook:</strong>
+        <a href="https://facebook.com/ojmaria.kilishi" target="_blank">OJ MARIA Kilishi</a>
+      </p>
+      <p>
+        <small>We'd love to hear from you and delight you with our kilishi!</small>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      &copy; <span id="curYear"></span> OJ MARIA Kilishi Delight. All rights reserved.
+    </div>
+    <small>
+      Designed with 
+      <span style="color: var(--deep-red);">&#10084;</span> for tradition & taste.
+    </small>
+  </footer>
+
+  <script>
+    // Update copyright year automatically
+    document.getElementById('curYear').textContent = new Date().getFullYear();
+
+    // Testimonial slider
+    let testimonialIndex = 0;
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.testimonial-dot');
+    function showTestimonial(n) {
+      testimonialIndex = n;
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === n);
+        dots[idx].classList.toggle('active', idx === n);
+      });
+    }
+    // Auto-cycle testimonials
+    setInterval(() => {
+      testimonialIndex = (testimonialIndex + 1) % slides.length;
+      showTestimonial(testimonialIndex);
+    }, 5500);
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+  </script>
+</body>
+</html>
